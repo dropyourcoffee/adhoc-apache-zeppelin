@@ -1,0 +1,5 @@
+zeppelin/conf/shiro.ini
+zeppelin/notebook/*
+.idea
+
+!zeppelin/webapps/webapp/app/home/home.html
