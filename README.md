@@ -8,3 +8,15 @@ To copy default authentication
     cp ./zeppelin/conf/shiro.ini.template ./zeppelin/conf/shiro.ini
 
 ```
+
+Run example
+```bash
+docker build -t zeppelinq:0.0.1-beta .
+&& docker run
+-p 8080:8080
+-v __PROJECT_DIR__/zeppelin/conf:/zeppelin/conf
+-v __PROJECT_DIR__/zeppelin/notebook:/zeppelin/notebook
+--name zeppelinq
+zeppelinq:0.0.1-beta 
+```
+
