@@ -1,4 +1,6 @@
 zeppelin/conf/shiro.ini
+zeppelin/conf/interpreter.json
+zeppelin/conf/zeppelin-env.sh
 zeppelin/notebook/*
 .idea
 
