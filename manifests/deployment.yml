@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zeppelinq
+  labels:
+    app: zeppelinq
+spec:
+  ports:
+  - port: 8080
+  selector:
+    app: zeppelinq
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1 
+kind: Deployment
+
+metadata:
+  name: zeppelinq
+  labels:
+    app: zeppelinq
+
+spec:
+  revisionHistoryLimit: 0
+  strategy:
+    # type: RollingUpdate
+    type: Recreate
+
+  selector:
+    matchLabels:
+      app: zeppelinq
+      tier: conf
+
+  template:
+    metadata:
+      labels:
+        app: zeppelinq
+        tier: conf
+
+    spec:
+      #Actual Mounting Path on k8s-node
+      volumes:
+        - name: zeppelinq-conf
+          hostPath:
+            path: /opt/appdata/zeppelinq/conf
+            type: Directory
+        - name: zeppelinq-notebooks
+          hostPath:
+            path: /opt/appdata/zeppelinq/notebook
+            type: Directory
+
+      # Container
+      containers:
+      - image: registry.qraftec.cloud/zeppelinq:0.0.1-beta
+        name: zeppelinq
+        imagePullPolicy: Always
+        # Mounting volume
+        volumeMounts:
+        - name: zeppelinq-conf
+          mountPath: /zeppelin/conf
+        - name: zeppelinq-notebooks
+          mountPath: /zeppelin/notebook
+        # Exposing port
+        ports:
+          - containerPort: 8080
+            name: zeppelinq-port
+
+      imagePullSecrets:
+        - name: regcred
+
+      restartPolicy: Always
