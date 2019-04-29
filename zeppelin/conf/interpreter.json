@@ -1,54 +1,12 @@
 {
   "interpreterSettings": {
-    "2EBUMZZ5G": {
-      "id": "2EBUMZZ5G",
-      "name": "jdbc",
-      "group": "jdbc",
-      "properties": {
-        "default.password": "",
-        "zeppelin.jdbc.auth.type": "",
-        "common.max_count": "1000",
-        "zeppelin.jdbc.principal": "",
-        "default.user": "gpadmin",
-        "default.url": "jdbc:postgresql://localhost:5432/",
-        "default.driver": "org.postgresql.Driver",
-        "zeppelin.jdbc.keytab.location": "",
-        "zeppelin.jdbc.concurrent.use": "true",
-        "zeppelin.jdbc.concurrent.max_connection": "10"
-      },
-      "status": "READY",
-      "interpreterGroup": [
-        {
-          "name": "sql",
-          "class": "org.apache.zeppelin.jdbc.JDBCInterpreter",
-          "defaultInterpreter": false,
-          "editor": {
-            "language": "sql",
-            "editOnDblClick": false
-          }
-        }
-      ],
-      "dependencies": [],
-      "option": {
-        "remote": true,
-        "port": -1,
-        "perNote": "shared",
-        "perUser": "shared",
-        "isExistingProcess": false,
-        "setPermission": false,
-        "users": [],
-        "isUserImpersonate": false
-      }
-    },
-    "2E9CZA8FW": {
-      "id": "2E9CZA8FW",
-      "name": "python",
+    "2EC8QAE25": {
+      "id": "2EC8QAE25",
+      "name": "python-roboadmin",
       "group": "python",
       "properties": {
-        "zeppelin.python": "python",
-        "zeppelin.interpreter.output.limit": "102400",
-        "zeppelin.python.maxResult": "1000",
-        "zeppelin.interpreter.localRepo": "/zeppelin/local-repo/2E9CZA8FW"
+        "zeppelin.python": "/opt/pyenvs/roboadmin/bin/python",
+        "zeppelin.python.maxResult": "1000"
       },
       "status": "READY",
       "interpreterGroup": [
@@ -100,35 +58,99 @@
         "users": [],
         "isUserImpersonate": false
       }
-    }
-  },
+    },
+    "2E993595J": {
+      "id": "2E993595J",
+      "name": "angular",
+      "group": "angular",
+      "properties": {},
+      "status": "READY",
+      "interpreterGroup": [
+        {
+          "name": "angular",
+          "class": "org.apache.zeppelin.angular.AngularInterpreter",
+          "defaultInterpreter": false,
+          "editor": {
+            "editOnDblClick": true
+          }
+        }
+      ],
+      "dependencies": [],
+      "option": {
+        "remote": true,
+        "port": -1,
+        "perNote": "shared",
+        "perUser": "shared",
+        "isExistingProcess": false,
+        "setPermission": false,
+        "users": [],
+        "isUserImpersonate": false
+      }
+    },
+    "2EANUCKE6": {
+      "id": "2EANUCKE6",
+      "name": "sh",
+      "group": "sh",
+      "properties": {
+        "zeppelin.shell.keytab.location": "",
+        "shell.command.timeout.millisecs": "60000",
+        "zeppelin.shell.principal": "",
+        "zeppelin.shell.auth.type": ""
+      },
+      "status": "READY",
+      "interpreterGroup": [
+        {
+          "name": "sh",
+          "class": "org.apache.zeppelin.shell.ShellInterpreter",
+          "defaultInterpreter": false,
+          "editor": {
+            "language": "sh",
+            "editOnDblClick": false
+          }
+        }
+      ],
+      "dependencies": [],
+      "option": {
+        "remote": true,
+        "port": -1,
+        "perNote": "shared",
+        "perUser": "shared",
+        "isExistingProcess": false,
+        "setPermission": false,
+        "users": [],
+        "isUserImpersonate": false
+      }
+    },
   "interpreterBindings": {
-    "2E96NG4PS": [
-      "2EBUMZZ5G",
-      "2E94CU8PC",
-      "2EC44Q4YD",
-      "2E9R25QES",
-      "2EB41X5RH",
-      "2EAACFA4J",
-      "2EC295F4P",
-      "2EBK3ZNAZ",
-      "2E9CZA8FW",
-      "2EAM1V1PA",
-      "2E9RTG11W",
-      "2EARN8ER9",
-      "2E971ZVRB"
+    "2EACNFSY7": [
+      "2EC8QAE25",
+      "2E9T6SC7R",
+      "2EBP118Y2",
+      "2E993595J",
+      "2EANUCKE6",
+      "2E9T9V9FY",
+      "2E8EGG3SJ",
+      "2EBDD6PUS",
+      "2E8SCZ13U",
+      "2EAVDDRV6",
+      "2EAKPR6YS",
+      "2E9APYYXV",
+      "2EBJSPENK",
+      "2EBK32Y35",
+      "2E9TKK59P",
+      "2EC6JY9AZ",
+      "2E9E7K33T",
+      "2E94KFV4S",
+      "2EB9X62PP",
+      "2E8EMJME5"
     ],
-    "2EC4U7RDQ": [
-      "2EBUMZZ5G",
-      "2E9CZA8FW"
+    "2EA137GGP": [
+      "2EC8QAE25",
+      "2EAKPR6YS"
     ],
-    "2E9C3KV29": [
-      "2EBUMZZ5G",
-      "2E9CZA8FW"
-    ],
-    "2EAJDWQJH": [
-      "2E9CZA8FW",
-      "2EBUMZZ5G"
+    "2E9AJ835Q": [
+      "2EC8QAE25",
+      "2EAKPR6YS"
     ]
   },
   "interpreterRepositories": [

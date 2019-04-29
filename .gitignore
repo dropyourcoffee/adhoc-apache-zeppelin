@@ -3,5 +3,8 @@ zeppelin/conf/interpreter.json
 zeppelin/conf/zeppelin-env.sh
 zeppelin/notebook/*
 .idea
-
+opt/
+dist/py/qrobo/
+dist/py/README.md
+dist/py/setup.py
 !zeppelin/webapps/webapp/app/home/home.html
