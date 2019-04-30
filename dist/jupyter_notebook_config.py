@@ -11,6 +11,8 @@ c = get_config()
 c.NotebookApp.ip = '0.0.0.0'
 c.NotebookApp.port = 8888
 c.NotebookApp.open_browser = False
+c.NotebookApp.notebook_dir = '/opt/pymodules/qrobo'
+c.NotebookApp.password = u'sha1:0719276e93fa:127f6811c6fbb3e94ae4ed490f37ec1a089afbf8'
 
 # https://github.com/jupyter/notebook/issues/3130
 c.FileContentsManager.delete_to_trash = False
