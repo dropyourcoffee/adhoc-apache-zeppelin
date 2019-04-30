@@ -27,7 +27,7 @@ while [ true ];
 do
     NO_PROC=$(eval $JPTY_PROC)
   if [ "${NO_PROC}" -le 0 ]; then
-    echo "Restarting Jupyter
+    echo "Restarting Jupyter"
     /bin/su -c "jupyter notebook --config /etc/jupyter/jupyter_notebook_config.py&" __NB_USER__
   fi
   sleep 5
