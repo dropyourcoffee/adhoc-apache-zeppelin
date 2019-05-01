@@ -11,11 +11,8 @@ COPY dist/shl/* /etc/init.d/
 RUN wget https://downloads.mariadb.com/Connectors/java/connector-java-1.5.9/mariadb-java-client-1.5.9.jar -P /zeppelin/interpreter/jdbc
 
 # Debian Package Manager Setup
-RUN apt-get update
-RUN apt-get -y install python3-pip python3.5-dev
-
-RUN mkdir -p /opt/pyenvs $PYMODULE_DIR
-RUN pip3 install virtualenv
+# RUN apt-get update
+# RUN apt-get -y install python3-pip python3.5-dev
 
 
 ##### Jupyter Environment starts
@@ -24,21 +21,31 @@ ARG NB_USER="dexter"
 ARG NB_UID="1000"
 ARG NB_GID="100"
 
-# Dependency 및 Package manager 업데이트
+# nginx 저장소 추가
+# RUN add-apt-repository ppa:nginx/stable
+
+# Dependency 및 Debian Package manager Setup
 RUN apt-get update && apt-get -yq dist-upgrade \
  && apt-get install -yq --no-install-recommends \
     wget \
     vim \
     net-tools \
+    python3-pip \
+    python3.5-dev \
     bzip2 \
     ca-certificates \
     sudo \
     locales \
     fonts-liberation \
  && rm -rf /var/lib/apt/lists/*
+    # nginx \
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
+
+# default python_env home 디렉토리 추가 -> virutalenv install
+RUN pip3 install virtualenv setuptools
+RUN mkdir -p /opt/pyenvs $PYMODULE_DIR
 
 # 환경변수 (Conda, shell, user, encoding)
 ENV CONDA_DIR=/opt/conda \
@@ -96,3 +103,4 @@ RUN echo "source $PYENV_DIR/bin/activate" >> $HOME/.bashrc
 
 EXPOSE 8080
 EXPOSE 8888
+# EXPOSE 80
