@@ -6,13 +6,16 @@ metadata:
     app: zeppelinq
 spec:
   ports:
-  - port: 8080
+  - name: zepp
+    port: 8080
+  - name: jpty
+    port: 8888
   selector:
     app: zeppelinq
-  type: LoadBalancer
+  type: NodePort
 
 ---
-apiVersion: apps/v1 
+apiVersion: apps/v1
 kind: Deployment
 
 metadata:
@@ -29,13 +32,11 @@ spec:
   selector:
     matchLabels:
       app: zeppelinq
-      tier: conf
 
   template:
     metadata:
       labels:
         app: zeppelinq
-        tier: conf
 
     spec:
       #Actual Mounting Path on k8s-node
@@ -48,22 +49,36 @@ spec:
           hostPath:
             path: /opt/appdata/zeppelinq/notebook
             type: Directory
+        - name: zeppelinq-pyenvs
+          hostPath:
+            path: /opt/appdata/zeppelinq/opt/pyenvs
+            type: Directory
+        - name: zeppelinq-pymodules
+          hostPath:
+            path: /opt/appdata/zeppelinq/opt/pymodules
+            type: Directory
 
       # Container
       containers:
-      - image: registry.qraftec.cloud/zeppelinq:0.0.1-beta
+      - image: registry.qraftec.cloud/zeppelinq:0.1.1-beta
         name: zeppelinq
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         # Mounting volume
         volumeMounts:
         - name: zeppelinq-conf
           mountPath: /zeppelin/conf
         - name: zeppelinq-notebooks
           mountPath: /zeppelin/notebook
+        - name: zeppelinq-pyenvs
+          mountPath: /opt/pyenvs
+        - name: zeppelinq-pymodules
+          mountPath: /opt/pymodules
         # Exposing port
         ports:
           - containerPort: 8080
-            name: zeppelinq-port
+            name: port-zepp
+          - containerPort: 8080
+            name: port-jpty
 
       imagePullSecrets:
         - name: regcred

@@ -1,7 +1,9 @@
 #!/bin/bash
 
 JPTY_PROC="netstat -ntlp | grep \":8888\" | wc -l"
-JPTY_PID=$(netstat -ntlp | grep ":8888" | awk '{print $NF}' | awk -F '/' '{print $1}')
+# Root can not check PID run by non-root users via netstat
+# JPTY_PID=$(netstat -ntlp | grep ":8888" | awk '{print $NF}' | awk -F '/' '{print $1}')
+JPTY_PID=$(ps aux | grep jupyter-notebook | head -1 | awk '{print $2}')
 
 if ! [ -d __PYENV_DIR__ ]; then
     echo "setup new virtualenv __PYENV_DIR__"
@@ -10,9 +12,10 @@ if ! [ -d __PYENV_DIR__ ]; then
 fi
 
 if ! [ -d __PYMODULE_DIR__ ]; then
-    echo "copy pymodule __PYMODULE_DIR__"
-    mkdir -p __PYMODULE_DIR__
-    cp -r /tmp/qrobo/* __PYMODULE_DIR__
+    #echo "copy pymodule __PYMODULE_DIR__"
+    #mkdir -p __PYMODULE_DIR__
+    #cp -r /tmp/qrobo/* __PYMODULE_DIR__
+    sh qrobo-git
 fi
 
 

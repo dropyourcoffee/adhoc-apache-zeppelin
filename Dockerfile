@@ -6,6 +6,9 @@ ARG PYMODULE_DIR=/opt/pymodules/qrobo
 
 COPY dist/webapps /tmp/webapps/
 COPY dist/shl/* /etc/init.d/
+COPY dist/lib/* /usr/local/lib/
+COPY dist/.ssh /root/.ssh
+RUN chmod 600 /root/.ssh/id_rsa.pub
 
 # Add mariadb-client connector.
 RUN wget https://downloads.mariadb.com/Connectors/java/connector-java-1.5.9/mariadb-java-client-1.5.9.jar -P /zeppelin/interpreter/jdbc
@@ -30,8 +33,6 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     wget \
     vim \
     net-tools \
-    python3-pip \
-    python3.5-dev \
     bzip2 \
     ca-certificates \
     sudo \
@@ -39,6 +40,13 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     fonts-liberation \
  && rm -rf /var/lib/apt/lists/*
     # nginx \
+
+RUN apt-get update && apt-get -yq dist-upgrade \
+ && apt-get install -yq --no-install-recommends \
+    python3-pip \
+    python3-dev \
+    python3.5-dev \
+ && rm -rf /var/lib/apt/lists/*
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
@@ -91,14 +99,15 @@ RUN sed -i -e "s#__PYENV_DIR__#$PYENV_DIR#g" /etc/init.d/$SCRPT.sh
 RUN sed -i -e "s#__PYMODULE_DIR__#$PYMODULE_DIR#g" /etc/init.d/$SCRPT.sh
 RUN sed -i -e "s#__NB_USER__#$NB_USER#g" /etc/init.d/$SCRPT.sh
 
-
 ARG SCRPT="init-homepage"
 RUN ln -s /etc/init.d/$SCRPT.sh /usr/local/bin/$SCRPT && chmod a+x /usr/local/bin/$SCRPT
 
+ARG SCRPT="qrobo-git"
+RUN ln -s /etc/init.d/$SCRPT.sh /usr/local/bin/$SCRPT && chmod a+x /usr/local/bin/$SCRPT
+RUN sed -i -e "s#__PYMODULE_DIR__#$PYMODULE_DIR#g" /etc/init.d/$SCRPT.sh
+
 RUN echo "cd /opt/pymodules/qrobo" >> $HOME/.bashrc
 RUN echo "source $PYENV_DIR/bin/activate" >> $HOME/.bashrc
-
-
 
 
 EXPOSE 8080
