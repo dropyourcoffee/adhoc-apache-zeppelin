@@ -8,8 +8,10 @@ spec:
   ports:
   - name: zepp
     port: 8080
+    nodePort: 30080
   - name: jpty
     port: 8888
+    nodePort: 30088
   selector:
     app: zeppelinq
   type: NodePort
@@ -60,9 +62,9 @@ spec:
 
       # Container
       containers:
-      - image: registry.qraftec.cloud/zeppelinq:0.1.1-beta
+      - image: registry.qraftec.cloud/zeppelinq:0.1.2-beta
         name: zeppelinq
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         # Mounting volume
         volumeMounts:
         - name: zeppelinq-conf

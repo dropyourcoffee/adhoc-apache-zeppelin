@@ -1,5 +1,7 @@
 FROM registry.qraftec.cloud/apache-zeppelin:0.7.2
 
+MAINTAINER Dexter Jung <dexter.jung@qraftec.com>
+
 ARG PYENV_DIR=/opt/pyenvs/roboadmin
 ARG PYMODULE_DIR=/opt/pymodules/qrobo
 

@@ -10,6 +10,7 @@ import stat
 c = get_config()
 c.NotebookApp.ip = '0.0.0.0'
 c.NotebookApp.port = 8888
+c.NotebookApp.base_url = '/ipyth'
 c.NotebookApp.open_browser = False
 c.NotebookApp.notebook_dir = '/opt/pymodules/qrobo'
 c.NotebookApp.password = u'sha1:0719276e93fa:127f6811c6fbb3e94ae4ed490f37ec1a089afbf8'

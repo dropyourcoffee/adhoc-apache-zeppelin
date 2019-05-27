@@ -4,7 +4,5 @@ zeppelin/conf/zeppelin-env.sh
 zeppelin/notebook/*
 .idea
 opt/
-dist/py/qrobo/
-dist/py/README.md
-dist/py/setup.py
+dist/py/
 !zeppelin/webapps/webapp/app/home/home.html
