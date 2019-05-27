@@ -3,5 +3,6 @@ zeppelin/conf/interpreter.json
 zeppelin/conf/zeppelin-env.sh
 zeppelin/notebook/*
 .idea
-
+opt/
+dist/py/
 !zeppelin/webapps/webapp/app/home/home.html

@@ -20,3 +20,10 @@ docker build -t zeppelinq:0.0.1-beta .
 zeppelinq:0.0.1-beta 
 ```
 
+Few initialising scripts must be executed after run.
+```bash
+docker exec zeppelinq init-homepage
+docker exec -d zeppelinq start-notebook
+
+```
+
